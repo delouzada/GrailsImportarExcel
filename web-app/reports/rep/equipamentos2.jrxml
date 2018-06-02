@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="equipamentos2" language="groovy" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="767e775e-32db-4a82-b8ba-b76ea39b0047">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#003399"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#003399"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#003399"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#003399"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="43a88c36-8881-456f-8d12-c6d735e01ca8">
+		<queryString>
+			<![CDATA[SELECT DISTINCT
+     MONTHNAME(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     YEAR(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     count(*) AS equipamentos,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo,
+     equipamentos.`familia` AS equipamentos_familia
+FROM
+     `equipamentos`.`equipamentos` equipamentos
+WHERE
+     YEAR(equipamentos.`previsao_eo`) = 2013
+ AND equipamentos.`familia` NOT LIKE '%PACOTE ETA%'
+GROUP BY
+     tag,
+     familia,
+     previsao_eo
+ORDER BY
+     previsao_eo ASC,
+     tipo ASC,
+     familia ASC]]>
+		</queryString>
+		<field name="equipamentos_previsao_eo" class="java.lang.String"/>
+		<field name="equipamentos" class="java.lang.Long"/>
+		<field name="equipamentos_tag" class="java.lang.String"/>
+		<field name="equipamentos_tipo" class="java.lang.String"/>
+		<field name="equipamentos_familia" class="java.lang.String"/>
+		<group name="equipamentos_tag">
+			<groupExpression><![CDATA[$F{equipamentos_tag}]]></groupExpression>
+		</group>
+		<group name="equipamentos_previsao_eo">
+			<groupExpression><![CDATA[$F{equipamentos_previsao_eo}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+     MONTHNAME(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     YEAR(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     count(*) AS equipamentos,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo,
+     equipamentos.`familia` AS equipamentos_familia
+FROM
+     `equipamentos`.`equipamentos` equipamentos
+WHERE
+     YEAR(equipamentos.`previsao_eo`) = 2013
+ AND equipamentos.`familia` NOT LIKE '%PACOTE ETA%'
+GROUP BY
+     tag,
+     familia
+ORDER BY
+     previsao_eo ASC,
+     familia ASC
+]]>
+	</queryString>
+	<field name="equipamentos_previsao_eo" class="java.lang.String"/>
+	<field name="equipamentos" class="java.lang.Long"/>
+	<field name="equipamentos_tag" class="java.lang.String"/>
+	<field name="equipamentos_tipo" class="java.lang.String"/>
+	<field name="equipamentos_familia" class="java.lang.String"/>
+	<group name="equipamentos_tag">
+		<groupExpression><![CDATA[$F{equipamentos_tag}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="bfd389dd-4a1c-4be9-9315-05aa8549ec51" x="139" y="30" width="529" height="43"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Previsão de entrega de equipamentos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="195" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="42cd2555-15b5-4ecc-ad83-fd494f582d8d" key="table 1" style="table 1" x="239" y="27" width="341" height="148"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="48d05540-183d-4eed-a94d-3997ccccb96a">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="452" uuid="3fece354-d784-4a9f-8104-5e4dbdfd995a">
+						<jr:columnHeader height="30" rowSpan="1"/>
+						<jr:columnFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="a73c6b07-20ca-4c39-bfc2-8ca36dc2fc04" x="0" y="0" width="452" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA["Total de registros:" +$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:column width="90" uuid="60f24ed5-3b07-4602-a020-ac9bc2605263">
+							<jr:columnHeader style="table 1_CH" height="60" rowSpan="1">
+								<staticText>
+									<reportElement uuid="7fd574a9-50ab-4bd5-9f19-c3183bd0905b" x="0" y="0" width="90" height="30"/>
+									<textElement/>
+									<text><![CDATA[TAG]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="46" rowSpan="1">
+								<textField>
+									<reportElement uuid="75e1a2c0-e49e-4762-8678-473e9627d055" x="0" y="2" width="90" height="44"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{equipamentos_tag}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="cc1867fc-96ed-4077-b699-ac142e1f419b">
+							<jr:columnHeader style="table 1_CH" height="60" rowSpan="1">
+								<staticText>
+									<reportElement uuid="b4ecc1e5-286e-40e6-a559-388569ddc0b8" x="0" y="0" width="90" height="30"/>
+									<textElement/>
+									<text><![CDATA[TIPO]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="46" rowSpan="1">
+								<textField>
+									<reportElement uuid="6c01905b-77fe-4d90-83b7-94980b746e8a" x="0" y="0" width="90" height="20"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{equipamentos_tipo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="03c49732-f5a0-495f-b7cf-0b92af397c3b">
+							<jr:columnHeader style="table 1_CH" height="60" rowSpan="1">
+								<staticText>
+									<reportElement uuid="dec97ce8-7663-4f09-b3b6-730dabb05623" x="0" y="0" width="90" height="30"/>
+									<textElement/>
+									<text><![CDATA[QUANT.EQUIP]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="46" rowSpan="1">
+								<textField>
+									<reportElement uuid="fa0e5cec-a447-4a63-a9aa-45d61598cf2b" x="0" y="0" width="90" height="44"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{equipamentos}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="182" uuid="05fadfb7-bc4f-440a-8a26-bd7b2c7cd09b">
+							<jr:columnHeader style="table 1_CH" height="60" rowSpan="1">
+								<staticText>
+									<reportElement uuid="63066a5b-0296-43d4-961d-886922c46242" x="0" y="0" width="90" height="30"/>
+									<textElement/>
+									<text><![CDATA[MES]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="46" rowSpan="1">
+								<textField>
+									<reportElement uuid="e081118c-b68d-4a3c-80ef-532667187184" x="0" y="0" width="90" height="20"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{equipamentos_previsao_eo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="173" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e0d4fd49-a876-4c09-a32b-e05ba8251863" x="273" y="34" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d1521777-38b6-4fce-a0f6-f4eae51dda44" x="353" y="34" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="f876011a-195a-4281-9a6e-b97e3e34a648" x="568" y="34" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

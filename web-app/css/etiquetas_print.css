@@ -1,0 +1,148 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+body{line-height:25;}
+ol,ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:none;}
+table{border-collapse:collapse;border-spacing:10;}
+body {
+font:normal 12px Consolas, Monaco, "Lucida Console", monospace;
+}
+ul.pagina {
+}
+li.xEtiqueta {
+float:left;
+position:relative;
+
+}
+li li {
+position:absolute;
+}
+li .xSku {
+font-weight:bold;
+font-size:11pt;
+left:10mm
+}
+li .xPedido {
+border-bottom:3px dotted;
+display:inline-block;
+font-size:17px;
+line-height:1;
+}
+li .xPedidoData {
+display: block;
+font-size: 8pt;
+position: absolute;
+top: 10mm;
+left:1mm;
+left: 0;
+padding: 0 0 0 4mm;
+top: 8.4mm;
+font-weight:bold;
+}
+
+li .xLiData {
+display: block;
+font-size: 7pt;
+position: absolute;
+top: 10mm;
+left: 26mm;
+}
+
+li .xSkuGroup {
+left:12mm;
+line-height:1;
+position:absolute;
+top:0;
+}
+li .xRuaGroup {
+font-size: 8pt;
+left: 0;
+padding: 0 0 0 4mm;
+position: absolute;
+top: 8.4mm;
+}
+li .xPedidoGroup {
+height:100em;
+padding-left:4em;
+position:absolute;
+min-width:50em;
+text-align:right;
+right:0;
+top:0;
+}
+li .xListGroup {
+border-left:0px dotted #DDD;
+border-top:0px dotted #DDD;
+bottom:0mm;
+font-size:9px;
+line-height:0;
+padding-left:0px;
+padding-top:0px;
+position:absolute;
+right:0;
+}
+</style>
+<style type="text/css" media="all">
+@page {
+size:210mm 297mm;
+margin:0 !important;
+}
+@page :first,@page :odd,@page :even {
+margin:0 !important;
+}
+body {
+color:#000;
+margin:0;
+padding:0;
+}
+ul.pagina {
+page-break-inside:avoid;
+overflow:hidden;
+width:209mm;
+height:280.95mm;
+margin:0 0 0 3.1mm;
+padding:0;
+padding-top:6.8mm;
+}
+ul.pagina:last-child {
+page-break-before:avoid;
+page-break-after:avoid;
+}
+li.xEtiqueta {
+display:block;
+width:63.5mm;
+height:25.4mm;
+float:left;
+overflow:hidden;
+background:#dfdfdf;
+margin-right:2.6mm;
+}
+li.xEtiqueta:nth-child(3n+3) {
+margin-right:0;
+}
+li.xEtiqueta ul {
+background:none repeat scroll 0 0 #ccc;
+height:21.5mm;
+position:absolute;
+width:60.2mm;
+display:block;
+margin:2mm 0 0 1.7mm;
+}
+li span.xPriority {
+background: url("../images/img/lista/print/star1.png") no-repeat scroll 0 0 transparent;
+display: block;
+height: 16px;
+position: absolute;
+right: 23px;
+text-indent: 999em;
+top: 7px;
+width: 16px;
+}
+
+
+
+
+
+li span.xPedVip {}
+li span.xPedIntegrado {background-image:url(../images/img/lista/print/star2.png);}

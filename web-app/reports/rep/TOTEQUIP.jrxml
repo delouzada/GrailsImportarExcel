@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TOTEQUIP" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5edfe04-3ade-49ab-807e-e11244dd70b7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#6495ED">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFD6FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#6495ED">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFD6FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#1E90FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE0FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<subDataset name="EQUIPAMENTOS" uuid="07c1da08-b619-41ac-a56b-5fb06df606b3">
+		<parameter name="FAMILIA" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$F{equipamentos_familia}]]></defaultValueExpression>
+		</parameter>
+		<queryString language="SQL">
+			<![CDATA[SELECT DISTINCT
+     MONTHNAME(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     YEAR(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     count(*) AS equipamentos,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo,
+     equipamentos.`familia` AS equipamentos_familia
+FROM
+     `equipamentos`.`equipamentos` equipamentos
+WHERE
+     YEAR(equipamentos.`previsao_eo`) = 2013
+ AND equipamentos.`familia` NOT LIKE '%PACOTE ETA%' AND equipamentos.`familia`=$P{FAMILIA}
+GROUP BY
+     tag,
+     familia
+ORDER BY
+     previsao_eo ASC,
+     familia ASC]]>
+		</queryString>
+		<field name="equipamentos_previsao_eo" class="java.lang.String"/>
+		<field name="equipamentos" class="java.lang.Long"/>
+		<field name="equipamentos_tag" class="java.lang.String"/>
+		<field name="equipamentos_tipo" class="java.lang.String"/>
+		<field name="equipamentos_familia" class="java.lang.String"/>
+		<group name="equipamentos_tag">
+			<groupExpression><![CDATA[$F{equipamentos_tag}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="FAMILIA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+     MONTHNAME(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     YEAR(equipamentos.`previsao_eo`) AS equipamentos_previsao_eo,
+     count(*) AS equipamentos,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo,
+     equipamentos.`familia` AS equipamentos_familia
+FROM
+     `equipamentos`.`equipamentos` equipamentos
+WHERE
+     YEAR(equipamentos.`previsao_eo`) = 2013
+ AND equipamentos.`familia` NOT LIKE '%PACOTE ETA%' AND equipamentos.`familia`= $P{FAMILIA}
+GROUP BY
+     tag,
+     familia
+ORDER BY
+     previsao_eo ASC,
+     familia ASC,
+     tipo ASC]]>
+	</queryString>
+	<field name="equipamentos_previsao_eo" class="java.lang.String"/>
+	<field name="equipamentos" class="java.lang.Long"/>
+	<field name="equipamentos_tag" class="java.lang.String"/>
+	<field name="equipamentos_tipo" class="java.lang.String"/>
+	<field name="equipamentos_familia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="00af6b04-cd11-4402-92cb-41dcbe249ac1" x="271" y="29" width="261" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTITATIVO DE EQUIPAMENTOS]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="5f60b1ea-f573-4830-93a8-98fc732d32ae" x="0" y="-1" width="181" height="50"/>
+				<imageExpression><![CDATA["C:\\Users\\alexandro.aquino\\Documents\\NetBeansProjects\\BUSCA_IMPORTEXCEL\\web-app\\images\\tucpng.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="151" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="839592e0-53ec-4948-89ae-74e2b4bf75c7" key="table 2" style="table 2" x="221" y="5" width="360" height="140"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="EQUIPAMENTOS" uuid="38db0308-9e9c-4dc1-aecc-d2118661cc90">
+						<datasetParameter name="FAMILIA">
+							<datasetParameterExpression><![CDATA[$F{equipamentos_familia}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="494b9e3e-bede-4a05-bd1d-859899ff1cd5">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="bec683b4-1800-4e70-8229-8dd659b3dd87" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<text><![CDATA[TAG]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement uuid="7f53b34b-63a3-4897-bd33-c95147b0c868" x="0" y="0" width="90" height="32"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{equipamentos_tag}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="23e64012-1e3d-49e7-a335-336725496dd1">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="337b092f-a90b-412c-b807-8813039b9fa0" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<text><![CDATA[TIPO]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement uuid="45ef1a6c-6afa-42cf-abf4-a662aa5c727f" x="0" y="0" width="90" height="32"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{equipamentos_tipo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2e4aaf5b-4bb4-43f0-bc72-635c71775aaa">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="930eafa9-bc4f-4f6a-8d1f-f1ce645acc48" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<text><![CDATA[QUANTIDADE]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement uuid="80f799f3-c09f-4bc0-b221-d20ebd856813" x="0" y="0" width="90" height="32"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{equipamentos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="97c08dc5-2a4b-4fcb-b33d-0caeb687b21f">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2821b613-e97c-43a1-b5b2-de8b3d68c1b1" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<text><![CDATA[DATA PREV EO]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement uuid="d973f324-e3f8-48fd-b63b-eee2b2582711" x="0" y="0" width="90" height="32"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{equipamentos_previsao_eo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

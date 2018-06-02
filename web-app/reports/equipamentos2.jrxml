@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="equipamentos2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="767e775e-32db-4a82-b8ba-b76ea39b0047">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="c34c1d7f-1137-4ca1-9474-8b8a2d05d5af"/>
+	<queryString>
+		<![CDATA[SELECT
+     equipamentos.`id` AS equipamentos_id,
+     equipamentos.`version` AS equipamentos_version,
+     equipamentos.`familia` AS equipamentos_familia,
+     equipamentos.`previsao_eo` AS equipamentos_previsao_eo,
+     equipamentos.`previsao_lib_civil` AS equipamentos_previsao_lib_civil,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo
+FROM
+     `equipamentos` equipamentos]]>
+	</queryString>
+	<field name="equipamentos_id" class="java.lang.Long"/>
+	<field name="equipamentos_version" class="java.lang.Long"/>
+	<field name="equipamentos_familia" class="java.lang.String"/>
+	<field name="equipamentos_previsao_eo" class="java.sql.Timestamp"/>
+	<field name="equipamentos_previsao_lib_civil" class="java.sql.Timestamp"/>
+	<field name="equipamentos_tag" class="java.lang.String"/>
+	<field name="equipamentos_tipo" class="java.lang.String"/>
+	<group name="equipamentos_tag">
+		<groupExpression><![CDATA[$F{equipamentos_tag}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="165" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="aae3e4b3-b216-455a-a387-ec2f590efe1d" key="table" style="table" x="488" y="26" width="255" height="122"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="fdc7afda-ed87-47cd-bf6b-a5934b4eddf1">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="0" uuid="9eaa4ca5-4cb4-4242-a182-28097b9f858d">
+						<jr:column width="90" uuid="980b633b-00d0-41f9-be2f-a55a68e1c379">
+							<jr:tableHeader style="table_TD" height="60" rowSpan="1"/>
+							<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+							<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+							<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="90" uuid="cf12fc9b-71f4-4a39-9c9a-ab1eb2ed8bd6">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="7f8e3091-b5cc-416b-a9c9-eb07c8cf35a7">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="20ff2b4a-5a0a-4e6e-965f-35489ca239e8">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="99aafbec-5dbd-4476-b356-88503aa2b171">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="afa31507-f1db-412f-b288-afe8fda9b85c">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="04c75669-f95c-4222-a647-08f4bf638eee">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="c5a0c3e3-1d5f-4e99-bf93-7edd43420474">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="3091b914-8583-4c89-aea2-2329b53bbd7b">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="dd9e2783-7fb0-4eca-89b8-561e1adcc562">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="8ec0fbf1-522b-43ca-99b8-2bbc3c36821b">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="42385f5a-74b0-48f0-820d-03145aeccfcc">
+						<jr:tableHeader style="table_TH" height="60" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="60" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="60" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="60" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="68" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e0d4fd49-a876-4c09-a32b-e05ba8251863" x="273" y="34" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d1521777-38b6-4fce-a0f6-f4eae51dda44" x="353" y="34" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="f876011a-195a-4281-9a6e-b97e3e34a648" x="568" y="34" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

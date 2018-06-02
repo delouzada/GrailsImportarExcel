@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a22648cf-08df-41a2-acf5-2e4d67ac9928">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="FAMILIA" class="java.lang.String"/>
+	<parameter name="dataInicial" class="java.sql.Timestamp"/>
+	<parameter name="dataFinal" class="java.sql.Timestamp"/>
+	<queryString>
+		<![CDATA[SELECT
+
+     equipamentos.`id` AS equipamentos_id,
+     equipamentos.`version` AS equipamentos_version,
+     equipamentos.`familia` AS equipamentos_familia,
+
+ equipamentos.`previsao_eo`  AS equipamentos_previsao_eo,
+
+     equipamentos.`realizado` AS equipamentos_realizado,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo
+FROM
+     `equipamentos` equipamentos
+
+WHERE
+      equipamentos.`familia` = $P{FAMILIA} and
+
+
+equipamentos.`previsao_eo` BETWEEN  $P{dataInicial} and $P{dataFinal}
+GROUP BY
+
+equipamentos.`previsao_eo`,
+equipamentos.`tag`,
+$P{FAMILIA},
+equipamentos.`tipo`,
+equipamentos.`id`
+
+
+order by
+
+
+equipamentos.`previsao_eo` ASC,
+equipamentos.`tag` ASC,
+$P{FAMILIA} ASC,
+equipamentos.`tipo` ASC,
+equipamentos.`id` ASC]]>
+	</queryString>
+	<field name="equipamentos_id" class="java.lang.Long"/>
+	<field name="equipamentos_version" class="java.lang.Long"/>
+	<field name="equipamentos_familia" class="java.lang.String"/>
+	<field name="equipamentos_previsao_eo" class="java.sql.Timestamp"/>
+	<field name="equipamentos_realizado" class="java.lang.String"/>
+	<field name="equipamentos_tag" class="java.lang.String"/>
+	<field name="equipamentos_tipo" class="java.lang.String"/>
+	<variable name="dataEO" class="java.lang.String">
+		<variableExpression><![CDATA[$F{equipamentos_previsao_eo}.getMonth()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="016ae9b2-6722-4688-9e69-45c7dffdef29" x="100" y="39" width="603" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREVISÃO GERAL DE ENTREGA DE EQUIPAMENTOS POR MÊS U08A ETA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="68" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="ca247862-1cf4-47b3-b100-144627c5d845" x="-28" y="7" width="858" height="55"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<box>
+							<pen lineWidth="1.25"/>
+							<topPen lineWidth="1.25"/>
+							<leftPen lineWidth="1.25"/>
+							<bottomPen lineWidth="1.25"/>
+							<rightPen lineWidth="1.25"/>
+						</box>
+						<staticText>
+							<reportElement uuid="98ce5ab3-1f95-482f-9921-83ba825f2a54" style="Crosstab Data Text" x="0" y="0" width="203" height="60"/>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[FAMÍLIA   /    TIPO]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="equipamentos_familia" width="81" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{equipamentos_familia}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="b5b722d5-2d50-4133-8b17-10b218ddedd4" style="Crosstab Data Text" x="0" y="0" width="81" height="25"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{equipamentos_familia}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="bcf9f281-8c0a-46d0-b231-a61fa9f67fc4" x="0" y="6" width="140" height="25" forecolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total de Equipamentos]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="equipamentos_tipo" width="122" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{equipamentos_tipo}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="4c4d6df1-baa9-4b67-83f4-eea236d41e0a" style="Crosstab Data Text" x="0" y="0" width="122" height="25"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{equipamentos_tipo}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="equipamentos_tag" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{equipamentos_tag}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="d4c6b705-cb5e-4271-b7dd-7ec477e03172" style="Crosstab Data Text" x="0" y="15" width="127" height="15"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{equipamentos_tag}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="a84dda81-3c33-454c-a94c-4e8d97677d2c" style="Crosstab Data Text" x="0" y="0" width="127" height="15"/>
+								<textElement>
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TAG]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="05d02424-1af7-4e5a-ab46-297e0acc9d1b" x="0" y="0" width="95" height="60" forecolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total Geral]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup name="equipamentos_previsao_eo" height="30" totalPosition="End">
+					<bucket class="java.sql.Timestamp">
+						<bucketExpression><![CDATA[$F{equipamentos_previsao_eo}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="732adbec-ed5c-4a35-aeb0-e7ce0c507c7b" style="Crosstab Data Text" x="0" y="0" width="50" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{equipamentos_previsao_eo}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="84dc2751-8cec-47ba-8d62-02d222aacc4d" x="0" y="0" width="77" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Quantidade ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="equipamentos_tagMeasure" class="java.lang.Integer" calculation="Count">
+					<measureExpression><![CDATA[$F{equipamentos_tag}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="76d64205-0a98-4c1a-b34b-2227e64364ba" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="31" rowTotalGroup="equipamentos_familia">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="17d1d422-3712-4afc-87f9-b465989155b7" style="Crosstab Data Text" x="0" y="0" width="50" height="31" forecolor="#FFFFFF"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="95" height="25" columnTotalGroup="equipamentos_tag">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="cc462b89-89fe-4715-a3e7-5beefbbe3420" style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="95" height="31" rowTotalGroup="equipamentos_familia" columnTotalGroup="equipamentos_tag">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="961d7caf-551b-4024-b077-4a4c13424f61" style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="83" height="25" columnTotalGroup="equipamentos_previsao_eo">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="4fb7763c-8143-4da6-aef9-df251423c130" style="Crosstab Data Text" x="0" y="0" width="77" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="83" height="31" rowTotalGroup="equipamentos_familia" columnTotalGroup="equipamentos_previsao_eo">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="e3d51094-82d0-443e-bae0-e1a15b27114f" style="Crosstab Data Text" x="0" y="0" width="83" height="31" forecolor="#FFFFFF"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{equipamentos_tagMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="0" rowTotalGroup="equipamentos_tipo">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="95" height="0" rowTotalGroup="equipamentos_tipo" columnTotalGroup="equipamentos_tag">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="83" height="0" rowTotalGroup="equipamentos_tipo" columnTotalGroup="equipamentos_previsao_eo">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

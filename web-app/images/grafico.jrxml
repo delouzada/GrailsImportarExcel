@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="grafico" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ae167f65-2ce2-4db1-a9b9-73aa9f643029">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<queryString>
+		<![CDATA[SELECT
+     equipamentos.`id` AS equipamentos_id,
+     equipamentos.`version` AS equipamentos_version,
+     equipamentos.`familia` AS equipamentos_familia,
+     equipamentos.`previsao_eo` AS equipamentos_previsao_eo,
+     equipamentos.`previsao_lib_civil` AS equipamentos_previsao_lib_civil,
+     equipamentos.`realizado` AS equipamentos_realizado,
+     equipamentos.`tag` AS equipamentos_tag,
+     equipamentos.`tipo` AS equipamentos_tipo
+FROM
+     `equipamentos` equipamentos
+
+
+ORDER BY
+
+ equipamentos.`previsao_eo` ASC]]>
+	</queryString>
+	<field name="equipamentos_id" class="java.lang.Long"/>
+	<field name="equipamentos_version" class="java.lang.Long"/>
+	<field name="equipamentos_familia" class="java.lang.String"/>
+	<field name="equipamentos_previsao_eo" class="java.sql.Timestamp"/>
+	<field name="equipamentos_previsao_lib_civil" class="java.sql.Timestamp"/>
+	<field name="equipamentos_realizado" class="java.lang.String"/>
+	<field name="equipamentos_tag" class="java.lang.String"/>
+	<field name="equipamentos_tipo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="118" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement uuid="4caeded6-fbb0-486a-bc4c-7c9a5e9bcb4a" x="427" y="0" width="200" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{equipamentos_familia}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{equipamentos_tipo}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{equipamentos_tag}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{equipamentos_familia}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{equipamentos_previsao_eo}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{equipamentos_tag}]]></valueExpression>
+						<labelExpression><![CDATA[$F{equipamentos_tag}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="186" splitType="Stretch"/>
+	</summary>
+</jasperReport>
